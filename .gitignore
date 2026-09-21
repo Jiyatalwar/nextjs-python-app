@@ -1,0 +1,21 @@
+# Backend
+backend/venv/
+backend/.venv/
+backend/env/
+backend/__pycache__/
+backend/*.py[cod]
+backend/*.db
+backend/.env
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env*
+frontend/.vercel/
+
+# Local files
+.history/
+.vscode/
+.DS_Store
+Thumbs.db
