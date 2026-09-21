@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { apiRequest } from '../../lib/api';
 
 export default function Signup() {
   const [email, setEmail] = useState('');
@@ -14,19 +15,13 @@ export default function Signup() {
     setMsg('');
 
     try { 
-      const res = await fetch('http://127.0.0.1:8000/api/signup', {
+      await apiRequest('/api/signup', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await res.json();
-      if (res.ok) {
-        setMsg('Signup successful! Redirecting to login...');
-        setTimeout(() => router.push('/dashboard'), 1500);
-      } else {
-        setMsg(data.detail || 'Signup failed');
-      }
+      setMsg('Signup successful! Redirecting to dashboard...');
+      setTimeout(() => router.push('/dashboard'), 1500);
     } catch (err) {
       setMsg('Server Connection Error');
     }

@@ -2,6 +2,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { apiRequest } from '../../lib/api';
 
 function ResetPasswordForm() {
   const [token, setToken] = useState('');
@@ -22,21 +23,15 @@ function ResetPasswordForm() {
     setMsg('');
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/reset-password', {
+      await apiRequest('/api/reset-password', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, new_password: newPassword }),
       });
 
-      const data = await res.json();
-      if (res.ok) {
-        setMsg('Password updated successfully! Redirecting to login...');
-        setTimeout(() => {
-          router.push('/login');
-        }, 1500);
-      } else {
-        setMsg(data.detail || 'Reset failed');
-      }
+      setMsg('Password updated successfully! Redirecting to login...');
+      setTimeout(() => {
+        router.push('/login');
+      }, 1500);
     } catch (err) {
       setMsg('Server Connection Error');
     }

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { apiRequest } from '../../lib/api';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -15,22 +16,15 @@ export default function ForgotPassword() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/forgot-password', {
+      const data = await apiRequest('/api/forgot-password', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
-      
-      const data = await res.json();
-      if (res.ok) {
-        setMsg('Token generated! Redirecting to reset page...');
-        setTimeout(() => {
-          router.push(`/reset-password?token=${data.token}`);
-        }, 1200);
-      } else {
-        setMsg(data.detail || 'Failed to generate token');
-        setLoading(false);
-      }
+
+      setMsg('Token generated! Redirecting to reset page...');
+      setTimeout(() => {
+        router.push(`/reset-password?token=${data.token}`);
+      }, 1200);
     } catch (err) {
       setMsg('Server Connection Error');
       setLoading(false);
