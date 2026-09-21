@@ -32,9 +32,12 @@ export default function ForgotPassword() {
   };
 
   return (
+    // main  div for  layout 
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4 text-black">
       <div className="max-w-md w-full bg-white p-6 rounded shadow-md">
         <h2 className="text-2xl font-bold mb-4 text-center">Forgot Password</h2>
+    // link router  started here
+  
         {msg && <p className="mb-4 text-center text-sm font-semibold text-orange-600">{msg}</p>}
         <form onSubmit={handleReset} className="space-y-4">
           <input 
@@ -50,6 +53,8 @@ export default function ForgotPassword() {
             disabled={loading}
             className="w-full bg-orange-600 text-white p-2 rounded hover:bg-orange-700 font-medium disabled:bg-gray-400"
           >
+          // ganrete token for get user details who visited 
+              
             {loading ? 'Generating...' : 'Get Reset Token'}
           </button>
         </form>
