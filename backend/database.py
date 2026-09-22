@@ -4,9 +4,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Forces the database file to stay inside the backend folder
+# data collect in auth_db.db for user deatils 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{os.path.join(BASE_DIR, 'auth_db.db')}"
-
+# sql check database for sign in 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )
