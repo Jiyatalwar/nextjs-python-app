@@ -6,7 +6,7 @@ export default function Home() {
       <div className="bg-white p-8 rounded-lg shadow-md text-center max-w-sm w-full">
         <h1 className="text-2xl font-bold mb-2">Welcome</h1>
         <p className="text-gray-600 mb-6 text-sm">FastAPI & Next.js Auth System</p>
-        
+        {/*login link start here   */}
         <div className="space-y-3">
           <Link 
             href="/login" 
@@ -14,13 +14,15 @@ export default function Home() {
           >
             Sign In
           </Link>
-          
+          {/*login link end here   */}
+          {/*signup link start here   */}
           <Link 
             href="/signup" 
             className="block w-full bg-gray-200 text-gray-800 py-2 rounded font-medium hover:bg-gray-300 transition"
           >
             Sign Up
           </Link>
+          {/*sign up link end here   */}
 
         </div>
       </div>
